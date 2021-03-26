@@ -7,7 +7,6 @@
 <script>
 import Navigation from '@/components/Navigation'
 import db from './db.js'
-
 export default {
   name: 'App',
   data() {
