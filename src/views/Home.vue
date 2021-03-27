@@ -22,5 +22,6 @@
 <script>
 export default {
   name: 'Home',
+  props:['user']
   }
 </script>
