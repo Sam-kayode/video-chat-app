@@ -9,7 +9,7 @@
           >
         </router-link>
         <div class="navbar-nav ml-auto">
-          <router-link class="btn btn-outline-primary nav-item nav-link" to="/login"
+          <router-link class="btn btn-outline-primary" to="/login"
             >log in</router-link
           >
         </div>
