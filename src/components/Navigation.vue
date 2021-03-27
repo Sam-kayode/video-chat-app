@@ -4,8 +4,8 @@
       <div class="container-fluid">
         <router-link class="navbar-brand p-0" to="/"
           ><span class="pr-1"><img src="../assets/logo.png" class="logo" alt="" /></span>
-          <span class="navbar-text small">
-            : Hi <span class="font-weight-bold text-white">{{ user }}</span></span
+          <span class="navbar-text small text-primary">
+            : Hi <span class="font-weight-bold ">{{ user }}</span></span
           >
         </router-link>
         <div class="navbar-nav ml-auto">
@@ -21,7 +21,7 @@
 <script>
 export default {
   name:'',
-  props:['users']
+  props:['user']
 }
 </script>
 
