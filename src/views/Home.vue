@@ -36,6 +36,10 @@ export default {
 .lead{
  
 }
-@media (min-width: 768)
-{}
+@media (min-width: 992px)
+{
+  .home-img {
+max-width:800px !important;
+}
+}
 </style>
