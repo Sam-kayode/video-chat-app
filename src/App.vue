@@ -32,6 +32,7 @@ export default {
 $primary: #262f80;
 @import 'node_modules/bootstrap/scss/bootstrap';
 #app{
-  max-width:100vw;
+
+
 }
 </style>

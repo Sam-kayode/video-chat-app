@@ -1,34 +1,52 @@
 <template>
-  <div class="row">
-    <div class="col-md-7 col-lg-6">
+  <div class="login row align-items-center justify-content-center p-0 mx-0">
+    <div class="col-sm col-md-6 p-0">
       <img
         src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/v%20chat/20945760-min_1_1_xweu9y.png"
-        class="img-fluid"
+        class="login-img img-fluid"
         alt=""
       />
     </div>
-    <div class="col-md-5 col-lg-6">
-      <h1 class="font-weight-bold text-primary">Hello, Welcome back</h1>
-      <form action="">
-        <form class="mt-3">
-          <div class="container">
-            <div class="row justify-content-center">
-              <h3 class="font-weight-light mb-3">Log in</h3>
-              <section class="form-group">
-                <div class="col-12 alert alert-danger px-3">error</div>
-                <label class="form-control-label sr-only" for="Email">Email</label>
-                <input required class="form-control" type="email" id="email" placeholder="Email" />
-              </section>
-              <section class="form-group">
-                <input required class="form-control" type="password" placeholder="Password" />
-              </section>
-              <div class="form-group text-right mb-0">
-                <button class="btn btn-primary" type="submit">Log in</button>
-              </div>
-            </div>
-          </div>
-        </form>
+    <div class="col-sm col-md-6 row mx-0">
+      <form class="card bg-light col-md-11 col-lg-7 container p-5">
+        <h3 class="font-weight-bold text-primary login-heading mb-4">
+          Hello, <br />
+          Welcome back!
+        </h3>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </template>
+<script>
+export default {}
+</script>
+<style lang="scss">
+.login{
+height:90vh;
+overflow-y: hidden;
+}
+
+</style>
