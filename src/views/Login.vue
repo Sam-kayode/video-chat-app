@@ -8,7 +8,7 @@
       />
     </div>
     <div class="col-sm col-md-6 row mx-0">
-      <form @submit.prevent="login" class="card bg-light col-md-11 col-lg-7 container p-3 py-5">
+      <form @submit.prevent="loginUser" class="card bg-light col-md-11 col-lg-7 container p-3 py-5">
         <h3 class="font-weight-bold text-primary login-heading mb-4">
           Hello, <br />
           Welcome back!
@@ -38,7 +38,13 @@
             v-model="password"
           />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+       
+        <button type="submit" class="btn btn-primary mb-2">Log in</button> 
+        <div class="mt-4">
+         or login with <span class="mr-2 ml-2"><img class="login-icons" src="https://img.icons8.com/fluent/48/000000/google-logo.png"/></span>
+          <span class="ml-1"><img class="login-icons" src="https://img.icons8.com/color/48/ffffff/facebook-new.png"/></span>
+        </div>
+        
         <Loader v-if="loader" />
       </form>
     </div>
@@ -58,7 +64,7 @@ export default {
   },
   components: { Loader },
   methods: {
-    login() {
+    loginUser() {
       if (this.email && this.password) {
         this.loader = true
       }
@@ -89,5 +95,8 @@ export default {
 }
 .login-img {
   width: 95%;
+}
+.login-icons{
+  width:30px;
 }
 </style>
