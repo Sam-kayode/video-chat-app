@@ -40,9 +40,10 @@
         </div>
        
         <button type="submit" class="btn btn-primary mb-2">Log in</button> 
-        <div class="mt-4">
-         or login with <span class="mr-2 ml-2"><img class="login-icons" src="https://img.icons8.com/fluent/48/000000/google-logo.png"/></span>
-          <span class="ml-1"><img class="login-icons" src="https://img.icons8.com/color/48/ffffff/facebook-new.png"/></span>
+        <div class="mt-4 social text-center"><p>or login with</p>
+          <span class="mx-2"><button class="btn"><img class="login-icons " src="https://img.icons8.com/fluent/48/000000/google-logo.png"/> Google</button></span>
+          <span class="mx-2"><button class="btn " ><img class="login-icons" img src="https://img.icons8.com/fluent/48/4a90e2/facebook-new.png"/> facebook</button></span>
+              
         </div>
         
         <Loader v-if="loader" />
@@ -97,6 +98,16 @@ export default {
   width: 95%;
 }
 .login-icons{
-  width:30px;
+  width:25px;
+
+}
+
+.social button{
+  background-color: rgb(232, 232, 240);
+}
+
+.social button:hover{
+  background-color: rgb(192, 192, 202);
+
 }
 </style>
