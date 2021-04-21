@@ -8,7 +8,7 @@
       />
     </div>
     <div class="col-sm col-md-6 row mx-0">
-      <form @submit.prevent="loginUser" class="card bg-light col-md-11 col-lg-7 container p-3 py-5">
+      <form @submit.prevent="loginUser" class="card bg-light col-md-11 col-lg-6 container p-3 py-5">
         <h3 class="font-weight-bold text-primary login-heading mb-4">
           Hello, <br />
           Welcome back!
@@ -38,16 +38,34 @@
             v-model="password"
           />
         </div>
+
+        <button type="submit" class="btn btn-primary mb-2">Log in</button>
        
-        <button type="submit" class="btn btn-primary mb-2">Log in</button> 
-        <div class="mt-4 social text-center"><p>or login with</p>
-          <span class="mx-2"><button class="btn"><img class="login-icons " src="https://img.icons8.com/fluent/48/000000/google-logo.png"/> Google</button></span>
-          <span class="mx-2"><button class="btn " ><img class="login-icons" img src="https://img.icons8.com/fluent/48/4a90e2/facebook-new.png"/> facebook</button></span>
-              
-        </div>
-        
         <Loader v-if="loader" />
       </form>
+       <div class="mt-4 social text-center col-sm-12">
+          or login with
+          <span class="mx-2"
+            ><button class="btn" v-on:click="signInWithGoogle">
+              <img
+                class="login-icons"
+                src="https://img.icons8.com/fluent/48/000000/google-logo.png"
+              />
+              Google
+            </button></span
+          >
+          <!-- <span class="mx-2"
+            ><button class="btn">
+              <img
+                class="login-icons"
+                img
+                src="https://img.icons8.com/fluent/48/4a90e2/facebook-new.png"
+              />
+              facebook
+            </button></span
+          > -->
+        </div>
+
     </div>
   </div>
 </template>
@@ -85,6 +103,16 @@ export default {
             this.loader = false
           }
         )
+    },
+    signInWithGoogle() {
+      const googleProvider = new Firebase.auth.GoogleAuthProvider()
+      Firebase.auth()
+        .signInWithPopup(googleProvider)
+        .then(() => {
+          this.$router.push('/')
+        }).catch((error)=>{
+          console.log(error)
+        })
     }
   }
 }
@@ -97,17 +125,17 @@ export default {
 .login-img {
   width: 95%;
 }
-.login-icons{
-  width:25px;
-
+.login-icons {
+  width: 25px;
 }
-
-.social button{
+.social{
+  margin:auto;
+}
+.social button {
   background-color: rgb(232, 232, 240);
 }
 
-.social button:hover{
+.social button:hover {
   background-color: rgb(192, 192, 202);
-
 }
 </style>

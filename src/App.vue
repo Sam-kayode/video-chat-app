@@ -31,6 +31,7 @@ export default {
 <style lang="scss">
 $primary: #262f80;
 @import 'node_modules/bootstrap/scss/bootstrap';
+ 
 #app{
 
 
