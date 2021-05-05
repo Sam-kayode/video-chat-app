@@ -8,10 +8,8 @@
       />
     </div>
     <div class="col-sm col-md-6 row mx-0">
-      <form @submit.prevent="loginUser" class="card bg-light col-md-11 col-lg-6 container p-3 py-5">
-        <h2 class="font-weight-bold text-primary login-heading mb-4">Sign Up</h2>
-
-        <div class="alert alert-danger px-3" v-if="error">{{ error }}</div>
+      <form @submit.prevent="register" class="card bg-light col-md-11 col-lg-6 container p-3 py-5">
+        <h2 class="font-weight-bold text-primary login-heading mb-4">Sign Up</h2>     
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
@@ -29,22 +27,26 @@
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input
-            type="password"
             class="form-control"
+            type="password"            
             id="exampleInputPassword1"
             placeholder="Password"
             v-model="passOne"
           />
+           <div v-if="error" class="alert alert-danger px-3">
+                    {{ error }}
+                  </div>
           <input
-            type="password"
             class="form-control mt-4"
+            type="password"
             id="exampleInputPassword1"
+            required
             placeholder="Repeat Password"
             v-model="passTwo"
           />
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2">Log in</button>
+        <button type="submit" class="btn btn-primary mb-2">Register</button>
 
         <Loader v-if="loader" />
       </form>
@@ -83,7 +85,8 @@ export default {
       email: null,
       passOne: null,
       passTwo: false,
-      error: null
+      error: null,
+      loader: false
     }
   },
   components: { Loader },
@@ -112,10 +115,27 @@ export default {
             this.error = error.message
           }
       }
+    },
+    signInWithGoogle() {
+      const googleProvider = new Firebase.auth.GoogleAuthProvider()
+      Firebase.auth()
+        .signInWithPopup(googleProvider)
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
-  watch:{
-    
+  watch: {
+    passTwo() {
+      if (this.passOne != '' && this.passTwo != '' && this.passTwo !== this.passOne) {
+        this.error = 'passwords must match'
+      }else{
+        this.error = null
+      }
+    }
   }
 }
 </script>
