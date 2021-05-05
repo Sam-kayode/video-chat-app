@@ -40,10 +40,11 @@
         </div>
 
         <button type="submit" class="btn btn-primary mb-2">Log in</button>
+        <span class="m-auto"> or <router-link class="" to="/register">Register</router-link> </span>
 
         <Loader v-if="loader" />
       </form>
-      <div class="mt-4 social text-center col-sm-12">
+      <div class="mt-4 mb-5 social text-center col-sm-12">
         or login with
         <span class="mx-2"
           ><button class="btn" v-on:click="signInWithGoogle">
@@ -52,8 +53,9 @@
               src="https://img.icons8.com/fluent/48/000000/google-logo.png"
             />
             Google
-          </button></span
-        >
+          </button>
+        </span>
+
         <!-- <span class="mx-2"
             ><button class="btn">
               <img
@@ -118,12 +120,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
   height: 94vh;
 }
 .login-img {
-  width: 95%;
+  width: 100%;
+
 }
 .login-icons {
   width: 25px;
@@ -137,5 +140,12 @@ export default {
 
 .social button:hover {
   background-color: rgb(192, 192, 202);
+}
+
+@media(max-width:576px){
+.login-img{
+  width:75%;
+  margin-left: 12.5%;
+}
 }
 </style>

@@ -1,18 +1,16 @@
 <template>
   <div class="login row container-fluid align-items-center justify-content-center p-0 mx-0">
-    <div class="col-sm col-md-6 p-0">
+    <div class="col-sm d-flex col-md-6 p-0 justify-content-end">
       <img
-        src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/v%20chat/20945760-min_1_1_xweu9y.png"
+        src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/v%20chat/reg_1_ed3onu.png"
         class="login-img img-fluid"
         alt=""
       />
     </div>
     <div class="col-sm col-md-6 row mx-0">
       <form @submit.prevent="loginUser" class="card bg-light col-md-11 col-lg-6 container p-3 py-5">
-        <h3 class="font-weight-bold text-primary login-heading mb-4">
-          Hello, <br />
-          Welcome back!
-        </h3>
+        <h2 class="font-weight-bold text-primary login-heading mb-4">Sign Up</h2>
+
         <div class="alert alert-danger px-3" v-if="error">{{ error }}</div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
@@ -35,7 +33,14 @@
             class="form-control"
             id="exampleInputPassword1"
             placeholder="Password"
-            v-model="password"
+            v-model="passOne"
+          />
+          <input
+            type="password"
+            class="form-control mt-4"
+            id="exampleInputPassword1"
+            placeholder="Repeat Password"
+            v-model="passTwo"
           />
         </div>
 
@@ -44,7 +49,7 @@
         <Loader v-if="loader" />
       </form>
       <div class="mt-4 social text-center col-sm-12">
-        or login with
+        or sign up with
         <span class="mx-2"
           ><button class="btn" v-on:click="signInWithGoogle">
             <img
@@ -74,62 +79,49 @@ import Loader from '../components/loader.vue'
 export default {
   data() {
     return {
+      displayName: null,
       email: null,
-      password: null,
-      error: null,
-      loader: false
+      passOne: null,
+      passTwo: false,
+      error: null
     }
   },
   components: { Loader },
   methods: {
-    loginUser() {
-      if (this.email && this.password) {
-        this.loader = true
-      }
+    register() {
       const info = {
         email: this.email,
-        password: this.password
+        password: this.passTwo,
+        displayName: this.displayName
       }
-      Firebase.auth()
-        .signInWithEmailAndPassword(info.email, info.password)
-        .then(
-          () => {
-            this.$router.push('/')
-            this.loader = false
-          },
-          error => {
-            this.error = error.message
-            this.loader = false
+      if (!this.error) {
+        Firebase.auth().createUserWithEmailAndPassword(info.email,info.password).then(
+        userCredentials => {
+          return userCredentials => {
+            return userCredentials.user.updateProfile({
+              displayName:info.displayName
+            })
           }
+        }
         )
-    },
-    signInWithGoogle() {
-      const googleProvider = new Firebase.auth.GoogleAuthProvider()
-      Firebase.auth()
-        .signInWithPopup(googleProvider)
-        .then(() => {
-          this.$router.push('/')
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      }
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
   height: 94vh;
 }
 .login-img {
-  width: 95%;
+  max-width: 100%;
+  margin-left: auto !important;
 }
 .login-icons {
   width: 25px;
 }
 .social {
-  margin: auto;
 }
 .social button {
   background-color: rgb(232, 232, 240);
@@ -137,5 +129,12 @@ export default {
 
 .social button:hover {
   background-color: rgb(192, 192, 202);
+}
+
+@media (max-width: 576px) {
+  .login-img {
+    width: 40%;
+    margin-left: 30% !important;
+  }
 }
 </style>
