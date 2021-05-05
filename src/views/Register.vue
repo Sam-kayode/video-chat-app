@@ -95,17 +95,27 @@ export default {
         displayName: this.displayName
       }
       if (!this.error) {
-        Firebase.auth().createUserWithEmailAndPassword(info.email,info.password).then(
-        userCredentials => {
-          return userCredentials => {
-            return userCredentials.user.updateProfile({
-              displayName:info.displayName
-            })
+        Firebase.auth()
+          .createUserWithEmailAndPassword(info.email, info.password)
+          .then(userCredentials => {
+            return userCredentials => {
+              return userCredentials.user
+                .updateProfile({
+                  displayName: info.displayName
+                })
+                .then(() => {
+                  this.$router.replace('/')
+                })
+            }
+          }),
+          error => {
+            this.error = error.message
           }
-        }
-        )
       }
     }
+  },
+  watch:{
+    
   }
 }
 </script>
