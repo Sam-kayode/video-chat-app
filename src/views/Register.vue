@@ -26,6 +26,18 @@
           >
         </div>
         <div class="form-group">
+          <label class="" for="displayName">Display Name</label>
+          <input
+            class="form-control"
+            type="text"
+            id="displayName"
+            placeholder="Display Name"
+            name="displayName"
+            required
+            v-model="displayName"
+          />
+        </div>
+        <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
           <input
             class="form-control"
