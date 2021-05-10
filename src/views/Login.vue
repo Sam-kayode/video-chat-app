@@ -71,7 +71,7 @@
   </div>
 </template>
 <script>
-import Firebase from 'firebase'
+import Firebase from 'firebase/app'
 import Loader from '../components/loader.vue'
 export default {
   data() {
@@ -126,7 +126,6 @@ export default {
 }
 .login-img {
   width: 100%;
-
 }
 .login-icons {
   width: 25px;
@@ -142,10 +141,10 @@ export default {
   background-color: rgb(192, 192, 202);
 }
 
-@media(max-width:576px){
-.login-img{
-  width:75%;
-  margin-left: 12.5%;
-}
+@media (max-width: 576px) {
+  .login-img {
+    width: 75%;
+    margin-left: 12.5%;
+  }
 }
 </style>

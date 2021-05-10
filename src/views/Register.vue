@@ -1,6 +1,6 @@
 <template>
   <div class="login row container-fluid align-items-center justify-content-center p-0 mx-0">
-    <div class="col-sm d-flex col-md-6 p-0 justify-content-end">
+    <div class="col-sm d-flex col-md-6 p-0">
       <img
         src="https://res.cloudinary.com/sam-kay/image/upload/q_auto:low/v%20chat/reg_1_ed3onu.png"
         class="login-img img-fluid"
@@ -9,13 +9,14 @@
     </div>
     <div class="col-sm col-md-6 row mx-0">
       <form @submit.prevent="register" class="card bg-light col-md-11 col-lg-6 container p-3 py-5">
-        <h2 class="font-weight-bold text-primary login-heading mb-4">Sign Up</h2>     
+        <h2 class="font-weight-bold text-primary login-heading mb-4">Sign Up</h2>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
             type="email"
             class="form-control"
             id="exampleInputEmail1"
+            required
             aria-describedby="emailHelp"
             placeholder="Enter email"
             v-model="email"
@@ -28,29 +29,26 @@
           <label for="exampleInputPassword1">Password</label>
           <input
             class="form-control"
-            type="password"            
+            type="password"
             id="exampleInputPassword1"
             placeholder="Password"
             v-model="passOne"
           />
-           <div v-if="error" class="alert alert-danger px-3">
-                    {{ error }}
-                  </div>
           <input
             class="form-control mt-4"
             type="password"
-            id="exampleInputPassword1"
             required
             placeholder="Repeat Password"
             v-model="passTwo"
           />
+          <small v-if="error" class="text-danger mt-1 warning"> {{ error }}! </small>
         </div>
 
         <button type="submit" class="btn btn-primary mb-2">Register</button>
 
         <Loader v-if="loader" />
       </form>
-      <div class="mt-4 social text-center col-sm-12">
+      <div class="mt-4 mb-5 social text-center col-sm-12">
         or sign up with
         <span class="mx-2"
           ><button class="btn" v-on:click="signInWithGoogle">
@@ -100,8 +98,8 @@ export default {
       if (!this.error) {
         Firebase.auth()
           .createUserWithEmailAndPassword(info.email, info.password)
-          .then(userCredentials => {
-            return userCredentials => {
+          .then(
+            userCredentials => {
               return userCredentials.user
                 .updateProfile({
                   displayName: info.displayName
@@ -109,11 +107,11 @@ export default {
                 .then(() => {
                   this.$router.replace('/')
                 })
+            },
+            error => {
+              this.error = error.message
             }
-          }),
-          error => {
-            this.error = error.message
-          }
+          )
       }
     },
     signInWithGoogle() {
@@ -125,14 +123,15 @@ export default {
         })
         .catch(error => {
           console.log(error)
+          console.log('error')
         })
     }
   },
   watch: {
     passTwo() {
       if (this.passOne != '' && this.passTwo != '' && this.passTwo !== this.passOne) {
-        this.error = 'passwords must match'
-      }else{
+        this.error = 'Passwords must match'
+      } else {
         this.error = null
       }
     }
