@@ -107,6 +107,7 @@ export default {
         password: this.passTwo,
         displayName: this.displayName
       }
+      this.loader = true
       if (!this.error) {
         Firebase.auth()
           .createUserWithEmailAndPassword(info.email, info.password)
@@ -117,11 +118,13 @@ export default {
                   displayName: info.displayName
                 })
                 .then(() => {
+                  this.loader = false
                   this.$router.replace('/')
                 })
             },
             error => {
               this.error = error.message
+              this.loader = false
             }
           )
       }
