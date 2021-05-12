@@ -9,7 +9,7 @@
             : Hi <span class="font-weight-bold">{{ user }}</span></span
           > -->
         </router-link>
-       <span class="user-details" v-if="user">Hi, {{user.displayName}}</span> 
+       <!-- <span class="user-details" v-if="user">Hi, {{user.displayName}}</span> -->
         <div class="navbar-nav ml-auto">
            <router-link class="btn btn-outline-primary" to="/register">Register</router-link>
           <router-link class="btn btn-outline-primary" to="/login" v-if="!user">log in</router-link>
