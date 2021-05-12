@@ -12,7 +12,7 @@
        <span class="user-details" v-if="user">Hi, {{user.displayName}}</span> 
         <div class="navbar-nav ml-auto">
            <router-link class="btn btn-outline-primary" to="/register">Register</router-link>
-          <router-link class="btn btn-outline-primary" to="/login">log in</router-link>
+          <router-link class="btn btn-outline-primary" to="/login" v-if="!user">log in</router-link>
           <span class="btn btn-outline-primary" @click='$emit("signout")' v-if="user">Sign out</span>
         </div>
       </div>
