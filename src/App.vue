@@ -1,12 +1,13 @@
 <template>
   <div id="app">
-    <Navigation :user="user" />
-    <router-view :user="user" />
+    <Navigation :user="user" class=""/>
+    <router-view :user="user" class="mt-5 pt-4" />
   </div>
 </template>
 <script>
-import Navigation from '@/components/Navigation'
 import db from './db.js'
+import Firebase from 'firebase'
+import Navigation from '@/components/Navigation'
 export default {
   name: 'App',
   data() {
@@ -15,12 +16,11 @@ export default {
     }
   },
   mounted() {
-    db.collection('users')
-      .doc('SbwYFOuT48yov90lcRKB')
-      .get()
-      .then(snapshot => {
-        this.user = snapshot.data().name
-      })
+    Firebase.auth().onAuthStateChanged(user =>{
+      if(user){
+        this.user = user
+      }
+    })
   },
   components: {
     Navigation

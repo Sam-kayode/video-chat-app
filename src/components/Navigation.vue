@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand navbar-light py-0">
+    <nav class="navbar navbar-expand navbar-light pb-0 pt-1 fixed-top bg-light">
       <div class="container-fluid">
         <router-link class="navbar-brand p-0" to="/"
           ><span class="pr-1"><img src="../assets/logo.png" class="logo" alt="" /></span>
@@ -9,6 +9,7 @@
             : Hi <span class="font-weight-bold">{{ user }}</span></span
           > -->
         </router-link>
+       <span class="user-details">Hi, {{user.displayName}}</span> 
         <div class="navbar-nav ml-auto">
           <router-link class="btn btn-outline-primary" to="/login">log in</router-link>
         </div>
@@ -26,13 +27,18 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+nav{
+  border-bottom:1px solid rgb(199, 199, 199);
+}
 .logo {
   width: 50px;
 }
 .brand-name {
-  font-family: 'Pacifico', cursive;
+font-family: 'Pacifico', cursive;
 font-size:25px;
-
-
+}
+.user-details{
+font-family:'Trebuchet MS', 'Gill Sans', 'Gill Sans MT', Calibri,  sans-serif;
+font-size:20px;
 }
 </style>
