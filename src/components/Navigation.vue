@@ -9,9 +9,11 @@
             : Hi <span class="font-weight-bold">{{ user }}</span></span
           > -->
         </router-link>
-       <span class="user-details">Hi, {{user.displayName}}</span> 
+       <span class="user-details" v-if="user">Hi, {{user.displayName}}</span> 
         <div class="navbar-nav ml-auto">
+           <router-link class="btn btn-outline-primary" to="/register">Register</router-link>
           <router-link class="btn btn-outline-primary" to="/login">log in</router-link>
+          <span class="btn btn-outline-primary" @click='$emit("signout")'>Sign out</span>
         </div>
       </div>
     </nav>

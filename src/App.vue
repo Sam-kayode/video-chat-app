@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navigation :user="user" class=""/>
-    <router-view :user="user" class="mt-5 pt-4" />
+    <Navigation :user="user" @signout="signout" class="" />
+    <router-view :user="user" @signout="signout" class="mt-5 pt-4" />
   </div>
 </template>
 <script>
@@ -15,9 +15,19 @@ export default {
       user: null
     }
   },
+  methods: {
+    signout() {
+      Firebase.auth()
+        .signOut()
+        .then(() => {
+          this.user = null
+          this.$router.push('login')
+        })
+    }
+  },
   mounted() {
-    Firebase.auth().onAuthStateChanged(user =>{
-      if(user){
+    Firebase.auth().onAuthStateChanged(user => {
+      if (user) {
         this.user = user
       }
     })
@@ -31,9 +41,7 @@ export default {
 <style lang="scss">
 $primary: #262f80;
 @import 'node_modules/bootstrap/scss/bootstrap';
- 
-#app{
 
-
+#app {
 }
 </style>

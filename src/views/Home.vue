@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3 home">
-    <div class="text-center">
-      <!-- Welcome <span class="font-weight-bold text-info">{{ user }}</span> -->
+    <div class="text-center" v-if="user">
+      Welcome <span class="font-weight-bold text-danger">{{ user.displayName }}</span>
     </div>
     <div class="container-fluid text-center">
       <div class="row align-items-center p-5">
@@ -31,9 +31,9 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-.home{
-  max-height:100%;
-  overflow:hidden;
+.home {
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .home-text-header {
