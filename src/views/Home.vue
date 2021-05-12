@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3 home">
     <div class="text-center" v-if="user">
-      Welcome <span class="font-weight-bold text-danger">{{ user.displayName }}</span>
+      Welcome <span class="font-weight-bold">{{ user.displayName }}</span>
     </div>
     <div class="container-fluid text-center">
       <div class="row align-items-center p-5">
