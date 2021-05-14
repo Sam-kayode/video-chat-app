@@ -49,6 +49,9 @@
           <li class="px-1 py-3" @click="toggle">
             <router-link to="/register" >Register</router-link>
           </li>
+           <li class="px-1 py-3" @click="toggle">
+            <router-link to="/register" >About</router-link>
+          </li>
           <li class="px-1 py-3" @click="
                 $emit('signout');
                 toggle
@@ -115,6 +118,12 @@ nav {
 
 .sidenav ul li {
   list-style-type: none;
+  text-decoration: none;
+}
+
+.sidenav ul li a{
+  text-decoration: none;
+
 }
 
 .harmburger {
