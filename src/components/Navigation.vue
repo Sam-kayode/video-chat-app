@@ -13,6 +13,7 @@
           :class="[{ opened: toggled }]"
           @click="toggle"
           aria-label="Main Menu"
+          v-if="user"
         >
           <svg width="100" height="100" viewBox="0 0 100 100">
             <path
@@ -39,12 +40,25 @@
         </div>
       </div>
     </nav>
-    <transition name="fade">
+    <transition name="fade" v-if="user">
       <div class="sidenav" v-if="toggled">
         <ul class="p-0">
-          <li><router-link class="px-2 py-4" to="/rooms" v-if="user">Rooms</router-link></li>
-          <router-link class="px-2 py-4" to="/register">Register</router-link>
-          <li><span class="px-2 py-4" @click="$emit('signout')" v-if="user">Sign out</span></li>
+          <li class="px-1 py-3" @click="toggle">
+            <router-link to="/rooms" v-if="user" @click="toggle">Rooms</router-link>
+          </li>
+          <li class="px-1 py-3" @click="toggle">
+            <router-link to="/register" >Register</router-link>
+          </li>
+          <li class="px-1 py-3" @click="
+                $emit('signout');
+                toggle
+              ">
+            <span
+             
+              v-if="user"
+              >Sign out</span
+            >
+          </li>
         </ul>
       </div>
     </transition>
@@ -104,7 +118,7 @@ nav {
 }
 
 .harmburger {
-  background-color: #ffffff;
+  background-color:rgb(244, 246, 248,0.1);
   border: none;
   cursor: pointer;
   padding: 0;
