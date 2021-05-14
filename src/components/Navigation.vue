@@ -2,10 +2,10 @@
   <div>
     <nav class="navbar navbar-expand navbar-light pb-0 pt-1 fixed-top bg-light">
       <div class="container-fluid mb-1">
-        <router-link class="btn btn-outline-primary" to="/rooms" v-if="user">Rooms</router-link>
-        <router-link class="btn btn-outline-primary" to="/register">Register</router-link>
-        <router-link class="btn btn-outline-primary" to="/login" v-if="!user">log in</router-link>
-        <span class="btn btn-outline-primary" @click="$emit('signout')" v-if="user">Sign out</span>
+        <router-link class="px-2" to="/rooms" v-if="user">Rooms</router-link>
+        <router-link class="px-2" to="/register">Register</router-link>
+        <router-link class="px-2" to="/login" v-if="!user">log in</router-link>
+        <span class="px-2" @click="$emit('signout')" v-if="user">Sign out</span>
 
         <div class="navbar-nav ml-auto">
           <router-link class="navbar-brand p-0" to="/"
