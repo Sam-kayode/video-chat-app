@@ -98,7 +98,7 @@ nav {
 }
 
 .sidenav {
-  width: 300px;
+  width: 200px;
   height: 100vh;
   position: fixed;
   z-index: 10;
