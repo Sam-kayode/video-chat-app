@@ -110,7 +110,7 @@ export default {
       Firebase.auth()
         .signInWithPopup(googleProvider)
         .then(() => {
-          this.$router.push('/')
+          this.$router.replace('/')
         })
         .catch(error => {
           console.log(error)
