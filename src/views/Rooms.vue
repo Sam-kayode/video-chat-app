@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="container">
     <h2 class="text-center">Rooms</h2>
 
-    <div class="row container">
-      <div class="col-sm col-md-5">
+    <div class="row ">
+      <div class="col-sm col-md-5 ml-auto">
         <form class="border rounded p-3">
           <div class="form-group">
             <label for="exampleInputEmail1">Room Name</label>
@@ -33,20 +33,15 @@
       </div>
       <div class="col-sm col-md-7">
         <div class="row">
-          <div class="col-sm-8">
-            <div class="card">
-              <h5 class="card-header">Featured</h5>
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">
-                  With supporting text below as a natural lead-in to additional content.
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
+          <div class="card">
+            <h5 class="card-header">Featured</h5>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">
+                With supporting text below as a natural lead-in to additional content.
+              </p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
-          </div>
-           <div class="col-sm-4">
-           
           </div>
         </div>
       </div>
