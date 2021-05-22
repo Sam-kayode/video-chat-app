@@ -140,7 +140,8 @@ export default {
         })
         .catch(error => {
           console.log(error)
-          console.log('error')
+          this.error=error
+        
         })
     }
   },
