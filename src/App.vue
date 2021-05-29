@@ -50,10 +50,13 @@ export default {
                 date: doc.data().createdAt
               })
             })
-            this.rooms=snapData.sort((a,b ) => {
-              
+            this.rooms = snapData.sort((a, b) => {
+              if (a.name.toLowerCase() < b.name.toLowerCase) {
+                return -1
+              } else {
+                return 1
+              }
             })
-
           })
       }
     })
