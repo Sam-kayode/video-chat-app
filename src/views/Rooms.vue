@@ -17,9 +17,9 @@
           <button type="submit" class="btn btn-primary">Add room</button>
         </form>
       </div>
-      <div class="col-sm col-md-7">
-        <h4>Recent</h4>
-        <div class="row">
+      <div class="col-sm col-md-7 pt-5 pt-md-0">
+        <h4 class="">Recent</h4>
+        <div class="row px-3">
           <div class="card">
             <h5 class="card-header">Featured</h5>
             <div class="card-body">
