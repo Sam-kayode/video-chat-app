@@ -7,12 +7,7 @@
         <form class="border rounded p-3">
           <div class="form-group">
             <label for="Input1">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="Input1"
-              placeholder="Name"
-            />
+            <input type="text" class="form-control" id="Input1" placeholder="Name" />
           </div>
           <div class="form-group">
             <label for="Textarea">Description</label>
@@ -23,6 +18,7 @@
         </form>
       </div>
       <div class="col-sm col-md-7">
+        <h4>Recent</h4>
         <div class="row">
           <div class="card">
             <h5 class="card-header">Featured</h5>
@@ -31,7 +27,7 @@
               <p class="card-text">
                 With supporting text below as a natural lead-in to additional content.
               </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="#" class="btn btn-danger">Delete</a>
             </div>
           </div>
         </div>
