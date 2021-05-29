@@ -10,8 +10,8 @@
             <input type="text" class="form-control" id="Input1" placeholder="Name" v-model="roomName" ref="roomName"/>
           </div>
           <div class="form-group">
-            <label for="Textarea">Description</label>
-            <textarea class="form-control" id="Textarea" rows="3"></textarea>
+            <label for="Textarea" >Description</label>
+            <textarea class="form-control" id="Textarea" rows="3" v-model="roomDescription" ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary" @click.prevent="handleAdd">Add room</button>
@@ -40,7 +40,8 @@ export default {
   name: 'Rooms',
   data() {
     return {
-      roomName: null
+      roomName: null,
+      roomDescription:null,
     }
   },
   methods:{
