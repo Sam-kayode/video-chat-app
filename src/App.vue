@@ -12,7 +12,8 @@ export default {
   name: 'App',
   data() {
     return {
-      user: null
+      user: null,
+      rooms: []
     }
   },
   methods: {
@@ -25,20 +26,35 @@ export default {
         })
     },
     addRoom(payload) {
-      db.collection('users')
-        .doc(this.user.uid)
-        .collection('rooms')
-        .add({
-          name: payload[0],
-          description: payload[1],
-          createdAt: Firebase.firestore.FieldValue.serverTimestamp()
-        })
+      db.collection('users').doc(this.user.uid).collection('rooms').add({
+        name: payload[0],
+        description: payload[1],
+        createdAt: Firebase.firestore.FieldValue.serverTimestamp()
+      })
     }
   },
   mounted() {
     Firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.user = user
+        db.collection('users')
+          .doc('this.user.uid')
+          .collection('rooms')
+          .onSnapshot(snapshot => {
+            const snapData = []
+            snapshot.forEach(doc => {
+              snapData.push({
+                id: doc.id,
+                name: doc.data().name,
+                description: doc.data().description,
+                date: doc.data().createdAt
+              })
+            })
+            this.rooms=snapData.sort((a,b ) => {
+              
+            })
+
+          })
       }
     })
   },
