@@ -3,10 +3,10 @@
     <nav class="navbar navbar-expand navbar-light pb-0 pt-1 fixed-top bg-light">
       <div class="container-fluid mb-1">
         <div class="topnav-links">
+          <span class="px-2 signout" @click="$emit('signout')" v-if="user">Sign out</span>
           <router-link class="px-2" to="/rooms" v-if="user">Rooms</router-link>
           <router-link class="px-2" to="/register">Register</router-link>
           <router-link class="px-2" to="/login" v-if="!user">log in</router-link>
-          <span class="px-2" @click="$emit('signout')" v-if="user">Sign out</span>
         </div>
         <button
           class="harmburger"
@@ -47,20 +47,19 @@
             <router-link to="/rooms" v-if="user" @click="toggle">Rooms</router-link>
           </li>
           <li class="px-1 py-3" @click="toggle">
-            <router-link to="/register" >Register</router-link>
+            <router-link to="/register">Register</router-link>
           </li>
-           <li class="px-1 py-3" @click="toggle">
-            <router-link to="/register" >About</router-link>
+          <li class="px-1 py-3" @click="toggle">
+            <router-link to="/register">About</router-link>
           </li>
-          <li class="px-1 py-3" @click="
-                $emit('signout');
-                toggle
-              ">
-            <span
-             
-              v-if="user"
-              >Sign out</span
-            >
+          <li
+            class="px-1 py-3"
+            @click="
+              $emit('signout')
+              toggle
+            "
+          >
+            <span v-if="user">Sign out</span>
           </li>
         </ul>
       </div>
@@ -91,6 +90,11 @@ nav {
 .logo {
   width: 50px;
 }
+
+.signout {
+  cursor: pointer !important;
+}
+
 .brand-name {
   font-family: 'Pacifico', cursive;
   font-size: 25px;
@@ -121,13 +125,12 @@ nav {
   text-decoration: none;
 }
 
-.sidenav ul li a{
+.sidenav ul li a {
   text-decoration: none;
-
 }
 
 .harmburger {
-  background-color:rgb(244, 246, 248,0.1);
+  background-color: rgb(244, 246, 248, 0.1);
   border: none;
   cursor: pointer;
   padding: 0;
