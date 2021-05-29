@@ -7,11 +7,23 @@
         <form class="border rounded p-3">
           <div class="form-group">
             <label for="Input1">Name</label>
-            <input type="text" class="form-control" id="Input1" placeholder="Name" v-model="roomName" ref="roomName"/>
+            <input
+              type="text"
+              class="form-control"
+              id="Input1"
+              placeholder="Name"
+              v-model="roomName"
+              ref="roomName"
+            />
           </div>
           <div class="form-group">
-            <label for="Textarea" >Description</label>
-            <textarea class="form-control" id="Textarea" rows="3" v-model="roomDescription" ></textarea>
+            <label for="Textarea">Description</label>
+            <textarea
+              class="form-control"
+              id="Textarea"
+              rows="3"
+              v-model="roomDescription"
+            ></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary" @click.prevent="handleAdd">Add room</button>
@@ -41,13 +53,15 @@ export default {
   data() {
     return {
       roomName: null,
-      roomDescription:null,
+      roomDescription: null
     }
   },
-  methods:{
-    handleAdd(){
-      this.$emit('addRoom', this.roomName)
-      this.roomName=null
+  methods: {
+    handleAdd() {
+      var arr = [this.roomName, this.roomDescription]
+      this.$emit('addRoom', arr)
+      this.roomName = null
+      this.roomDescription = null
       this.$refs.roomName.focus()
     }
   }

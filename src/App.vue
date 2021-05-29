@@ -28,8 +28,11 @@ export default {
       db.collection('users')
         .doc(this.user.uid)
         .collection('rooms')
-        .add({ name: payload, 
-        createdAt: Firebase.firestore.FieldValue.serverTimestamp() })
+        .add({
+          name: payload[0],
+          description: payload[1],
+          createdAt: Firebase.firestore.FieldValue.serverTimestamp()
+        })
     }
   },
   mounted() {
