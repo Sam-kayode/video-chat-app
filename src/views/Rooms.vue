@@ -1,31 +1,22 @@
 <template>
   <div class="container">
-    <h2 class="text-center">Rooms</h2>
+    <h2 class="text-center mb-3">Rooms</h2>
 
-    <div class="row ">
+    <div class="row">
       <div class="col-sm col-md-5 ml-auto">
         <form class="border rounded p-3">
           <div class="form-group">
-            <label for="exampleInputEmail1">Room Name</label>
+            <label for="Input1">Name</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              placeholder="Room name"
+              id="Input1"
+              placeholder="Name"
             />
-            <small id="emailHelp" class="form-text text-muted"
-              >We'll never share your email with anyone else.</small
-            >
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-            />
+            <label for="Textarea">Description</label>
+            <textarea class="form-control" id="Textarea" rows="3"></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary">Add room</button>
