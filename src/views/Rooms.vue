@@ -7,14 +7,14 @@
         <form class="border rounded p-3">
           <div class="form-group">
             <label for="Input1">Name</label>
-            <input type="text" class="form-control" id="Input1" placeholder="Name" />
+            <input type="text" class="form-control" id="Input1" placeholder="Name" v-model="roomName" ref="roomName"/>
           </div>
           <div class="form-group">
             <label for="Textarea">Description</label>
             <textarea class="form-control" id="Textarea" rows="3"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">Add room</button>
+          <button type="submit" class="btn btn-primary" @click.prevent="handleAdd">Add room</button>
         </form>
       </div>
       <div class="col-sm col-md-7 pt-5 pt-md-0">
@@ -36,6 +36,20 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  name: 'Rooms',
+  data() {
+    return {
+      roomName: null
+    }
+  },
+  methods:{
+    handleAdd(){
+      this.$emit('addRoom', this.roomName)
+      this.roomName=null
+      this.$refs.roomName.focus()
+    }
+  }
+}
 </script>
 <style></style>
