@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navigation :user="user" @signout="signout" class="" />
-    <router-view :user="user" @signout="signout" class="mt-5 pt-4" @addRoom="addRoom" />
+    <router-view :user="user" :rooms="rooms" @signout="signout" class="mt-5 pt-4" @addRoom="addRoom" />
   </div>
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
       if (user) {
         this.user = user
         db.collection('users')
-          .doc('this.user.uid')
+          .doc(this.user.uid)
           .collection('rooms')
           .onSnapshot(snapshot => {
             const snapData = []

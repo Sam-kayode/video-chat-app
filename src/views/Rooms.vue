@@ -31,13 +31,13 @@
       </div>
       <div class="col-sm col-md-7 pt-5 pt-md-0">
         <h4 class="">Recent</h4>
-        <div class="row px-3">
-          <div class="card">
-            <h5 class="card-header">Featured</h5>
+        <div class="row">
+          <div class="card mx-auto mb-5" v-for="room in rooms" :key="room.name">
+            <h5 class="card-header">{{ room.name }}</h5>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
+              <h5 class="card-title">Description</h5>
               <p class="card-text">
-                With supporting text below as a natural lead-in to additional content.
+                {{ room.description }}
               </p>
               <a href="#" class="btn btn-danger">Delete</a>
             </div>
@@ -64,7 +64,12 @@ export default {
       this.roomDescription = null
       this.$refs.roomName.focus()
     }
-  }
+  },
+  props: ['rooms']
 }
 </script>
-<style></style>
+<style>
+.card {
+  min-width: 300px;
+}
+</style>
