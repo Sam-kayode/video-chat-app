@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       user: null,
-      rooms: []
+      rooms: [],
+      loading:null,
     }
   },
   methods: {
@@ -38,6 +39,7 @@ export default {
         description: payload[1],
         createdAt: Firebase.firestore.FieldValue.serverTimestamp()
       })
+    
     },
     deleteRoom(payload) {
       db.collection('users').doc(this.user.uid).collection('rooms').doc(payload).delete()

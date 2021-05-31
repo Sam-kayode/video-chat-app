@@ -13,7 +13,7 @@
               id="Input1"
               placeholder="Name"
               v-model="roomName"
-              ref="roomName"
+              ref="roomName" 
             />
           </div>
           <div class="form-group">
@@ -26,7 +26,9 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" @click.prevent="handleAdd">Add room </button>
+          <button type="submit" class="btn btn-primary" @click.prevent="handleAdd" :disabled="!roomName">
+            Add room
+           </button>
         </form>
       </div>
       <div class="col-sm col-md-7 pt-5 pt-md-0">
@@ -40,7 +42,11 @@
                 {{ room.description }}
               </p>
 
-              <button class="btn btn-sm px-2 btn-danger" title="Delete Room" @click="$emit('deleteRoom', room.id)">
+              <button
+                class="btn btn-sm px-2 btn-danger"
+                title="Delete Room"
+                @click="$emit('deleteRoom', room.id)"
+              >
                 <font-awesome-icon icon="trash"></font-awesome-icon>
               </button>
               <button class="btn btn-sm px-2 ml-2 btn-outline-primary" title="access Room">
@@ -60,12 +66,14 @@ export default {
   data() {
     return {
       roomName: null,
-      roomDescription: null
+      roomDescription: null,
+      
     }
   },
   components: {
     FontAwesomeIcon
   },
+
   methods: {
     handleAdd() {
       var arr = [this.roomName, this.roomDescription]
@@ -75,7 +83,7 @@ export default {
       this.$refs.roomName.focus()
     }
   },
-  props: ['rooms']
+  props: ['rooms', 'loading']
 }
 </script>
 <style>
