@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <Navigation :user="user" @signout="signout" class="" />
-    <router-view :user="user" :rooms="rooms" @signout="signout" class="mt-5 pt-4" @addRoom="addRoom" />
+    <router-view
+      :user="user"
+      :rooms="rooms"
+      @signout="signout"
+      class="mt-5 pt-4"
+      @addRoom="addRoom"
+      @deleteRoom="deleteRoom"
+    />
   </div>
 </template>
 <script>
@@ -31,8 +38,10 @@ export default {
         description: payload[1],
         createdAt: Firebase.firestore.FieldValue.serverTimestamp()
       })
-    }
+    },
+   
   },
+
   mounted() {
     Firebase.auth().onAuthStateChanged(user => {
       if (user) {

@@ -26,7 +26,7 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" @click.prevent="handleAdd">Add room</button>
+          <button type="submit" class="btn btn-primary" @click.prevent="handleAdd">Add room </button>
         </form>
       </div>
       <div class="col-sm col-md-7 pt-5 pt-md-0">
@@ -39,7 +39,13 @@
               <p class="card-text">
                 {{ room.description }}
               </p>
-              <a href="#" class="btn btn-danger">Delete</a>
+
+              <button class="btn btn-sm px-2 btn-danger" title="Delete Room" @click="$emit('deleteRoom', room.id)">
+                <font-awesome-icon icon="trash"></font-awesome-icon>
+              </button>
+              <button class="btn btn-sm px-2 ml-2 btn-outline-primary" title="access Room">
+                <font-awesome-icon icon="user"></font-awesome-icon>
+              </button>
             </div>
           </div>
         </div>
@@ -48,6 +54,7 @@
   </div>
 </template>
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 export default {
   name: 'Rooms',
   data() {
@@ -55,6 +62,9 @@ export default {
       roomName: null,
       roomDescription: null
     }
+  },
+  components: {
+    FontAwesomeIcon
   },
   methods: {
     handleAdd() {
