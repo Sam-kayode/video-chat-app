@@ -39,7 +39,9 @@ export default {
         createdAt: Firebase.firestore.FieldValue.serverTimestamp()
       })
     },
-   
+    deleteRoom(payload) {
+      db.collection('users').doc(this.user.uid).collection('rooms').doc(payload).delete()
+    }
   },
 
   mounted() {
