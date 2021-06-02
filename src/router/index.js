@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Rooms from '../views/Rooms.vue'
-import checkIn from '../views/checkIn.vue'
+import CheckIn from '../views/CheckIn.vue'
 
 Vue.use(VueRouter)
 
@@ -31,8 +31,12 @@ const routes = [
   },
   {
     path: '/checkIn/:hostID/:roomID',
-    name: 'checkIn',
-    component: checkIn
+    name: 'CheckIn',
+    component: CheckIn
+  },
+  {
+      path:'*',
+      redirect:'/'
   }
 ]
 
