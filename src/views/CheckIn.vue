@@ -1,6 +1,6 @@
 <template>
   <div>
-      djdjdjdjdjj
+    djdjdjdjdjj
     <form class="mt-3" @submit.prevent="handleCheckIn">
       <div class="container">
         <div class="row justify-content-center">
@@ -35,6 +35,38 @@
   </div>
 </template>
 <script>
-export default {}
+import Firebase from 'firebase'
+import db from '../db.js'
+export default {
+  data() {
+    return {
+      displayName: null,
+      roomName: null
+    }
+  },
+  props: ['user'],
+  mounted() {
+    //this is to obtain the users dsplay name
+    Firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.displayName = user.displayName
+      }
+    })
+
+    //to get the room name
+    db.collection('users')
+      .doc(this.$route.params.hostID)
+      .collection('rooms')
+      .doc(this.$route.params.roomID)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          this.roomName = doc.data().name
+        } else {
+          this.$router.replace('/')
+        }
+      })
+  }
+}
 </script>
 <style lang=""></style>
