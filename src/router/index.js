@@ -30,14 +30,11 @@ const routes = [
     component: Rooms
   },
   {
-    path: '/checkIn/:hostID/:roomID',
+    path: '/checkin/:hostID/:roomID',
     name: 'CheckIn',
     component: CheckIn
   },
-  {
-      path:'*',
-      redirect:'/'
-  }
+ 
 ]
 
 const router = new VueRouter({

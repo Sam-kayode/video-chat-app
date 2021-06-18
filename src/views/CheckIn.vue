@@ -45,6 +45,15 @@ export default {
     }
   },
   props: ['user'],
+  methods: {
+    handleCheckIn() {
+      this.$emit('checkIn', {
+        hostID: this.$route.params.hostID,
+        roomID: this.$route.params.roomID,
+        displayName: this.displayName
+      })
+    }
+  },
   mounted() {
     //this is to obtain the users dsplay name
     Firebase.auth().onAuthStateChanged(user => {

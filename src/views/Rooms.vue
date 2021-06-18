@@ -13,7 +13,7 @@
               id="Input1"
               placeholder="Name"
               v-model="roomName"
-              ref="roomName" 
+              ref="roomName"
             />
           </div>
           <div class="form-group">
@@ -26,9 +26,14 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" @click.prevent="handleAdd" :disabled="!roomName">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            @click.prevent="handleAdd"
+            :disabled="!roomName"
+          >
             Add room
-           </button>
+          </button>
         </form>
       </div>
       <div class="col-sm col-md-7 pt-5 pt-md-0">
@@ -49,9 +54,13 @@
               >
                 <font-awesome-icon icon="trash"></font-awesome-icon>
               </button>
-              <button class="btn btn-sm px-2 ml-2 btn-outline-primary" title="access Room">
+              <router-link
+                class="btn btn-sm px-2 ml-2 btn-outline-primary"
+                title="access Room"
+                :to="`/checkin/${user.uid}/${room.id}`"
+              >
                 <font-awesome-icon icon="user"></font-awesome-icon>
-              </button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -66,8 +75,7 @@ export default {
   data() {
     return {
       roomName: null,
-      roomDescription: null,
-      
+      roomDescription: null
     }
   },
   components: {
@@ -83,7 +91,7 @@ export default {
       this.$refs.roomName.focus()
     }
   },
-  props: ['rooms', 'loading']
+  props: ['rooms', 'loading','user']
 }
 </script>
 <style>
