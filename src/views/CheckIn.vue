@@ -1,6 +1,6 @@
 <template>
   <div>
-    djdjdjdjdjj
+    
     <form class="mt-3" @submit.prevent="handleCheckIn">
       <div class="container">
         <div class="row justify-content-center">
