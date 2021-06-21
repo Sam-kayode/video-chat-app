@@ -11,6 +11,7 @@
                 <p class="font-weight-bold" v-if="roomName">
                   To: <span class="text-primary">{{ roomName }}</span>
                 </p>
+                <p></p>
                 <section class="form-group">
                   <label class="form-control-label sr-only" for="displayName">Name</label>
                   <input required class="form-control" type="text" v-model="displayName" />
@@ -44,7 +45,7 @@ export default {
       roomName: null
     }
   },
-  props: ['user'],
+  props: ['user','rooms'],
   methods: {
     handleCheckIn() {
       this.$emit('checkIn', {
@@ -71,6 +72,7 @@ export default {
       .then(doc => {
         if (doc.exists) {
           this.roomName = doc.data().name
+          
         } else {
           this.$router.replace('/')
         }
