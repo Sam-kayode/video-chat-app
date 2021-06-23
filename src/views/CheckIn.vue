@@ -11,13 +11,17 @@
                 <p class="font-weight-bold" v-if="roomName">
                   To: <span class="text-primary">{{ roomName }}</span>
                 </p>
-                <p></p>
+              <h6 class="font-weight-bold" >Description</h6>  <p v-if="roomName" class="font-weight-bold" >
+                
+              <span class="text-primary font-weight-light" > {{description}}</span>
+                </p>
                 <section class="form-group">
                   <label class="form-control-label sr-only" for="displayName">Name</label>
                   <input required class="form-control" type="text" v-model="displayName" />
                 </section>
                 <div class="form-group text-right mb-0">
-                  <button class="btn btn-primary" type="submit">Check in</button>
+                  <button class="btn btn-primary" type="submit"
+                  @click="handleCheckIn">Check in</button>
                 </div>
               </div>
               <div class="card-body card-outline-danger text-center" v-else>
@@ -42,7 +46,8 @@ export default {
   data() {
     return {
       displayName: null,
-      roomName: null
+      roomName: null,
+      description:null
     }
   },
   props: ['user','rooms'],
@@ -72,6 +77,8 @@ export default {
       .then(doc => {
         if (doc.exists) {
           this.roomName = doc.data().name
+          this.description=doc.data().description
+          
           
         } else {
           this.$router.replace('/')

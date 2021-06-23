@@ -34,7 +34,10 @@ const routes = [
     name: 'CheckIn',
     component: CheckIn
   },
- 
+  {
+    path: '*',
+    redirect: '/'
+  }
 ]
 
 const router = new VueRouter({
