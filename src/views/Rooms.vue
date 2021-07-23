@@ -61,7 +61,14 @@
               >
                 <font-awesome-icon icon="user"></font-awesome-icon>
               </router-link>
-            </div>
+               <router-link
+                class="btn btn-sm px-2 ml-2 btn-outline-primary"
+                title="Chat"
+                :to="`/chat/${user.uid}/${room.id}`"
+              >
+                <font-awesome-icon icon="video"></font-awesome-icon>
+              </router-link>
+          </div>
           </div>
         </div>
       </div>
