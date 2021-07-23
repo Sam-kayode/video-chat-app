@@ -38,7 +38,7 @@ const routes = [
   {
     path: '/chat/:hostID/:roomID',
     name: 'Chat',
-    component: Chat
+    componengitt: Chat
   },
   {
     path: '*',
