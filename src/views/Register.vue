@@ -135,7 +135,7 @@ export default {
       Firebase.auth()
         .signInWithPopup(googleProvider)
         .then(() => {
-            this.$router.replace('/')
+            this.$router.replace('/rooms')
       
         })
         .catch(error => {

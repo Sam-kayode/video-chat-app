@@ -49,3 +49,20 @@
   </div>
 </div>
 </template>
+<script>
+export default {
+name: 'Attendees',
+data(){
+  return{
+    hostID: this.$route.params.hostID,
+    roomID: this.$route.params.roomID,
+    roomName:null
+  }
+}
+
+}
+</script>
+
+<style>
+
+</style>

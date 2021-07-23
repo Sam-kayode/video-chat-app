@@ -96,7 +96,7 @@ export default {
         .signInWithEmailAndPassword(info.email, info.password)
         .then(
           () => {
-            this.$router.push('/')
+            this.$router.push('/rooms ')
             this.loader = false
           },
           error => {
@@ -110,7 +110,7 @@ export default {
       Firebase.auth()
         .signInWithPopup(googleProvider)
         .then(() => {
-          this.$router.replace('/')
+          this.$router.replace('/rooms')
         })
         .catch(error => {
           console.log(error)
