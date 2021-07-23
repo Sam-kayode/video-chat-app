@@ -2,12 +2,13 @@
   <div id="app">
     <Navigation :user="user" @signout="signout" class="" />
     <router-view
+      class="mt-5 pt-4"
       :user="user"
       :rooms="rooms"
       @signout="signout"
-      class="mt-5 pt-4"
       @addRoom="addRoom"
       @deleteRoom="deleteRoom"
+      @checkIn="checkIn"
     />
   </div>
 </template>
@@ -21,7 +22,7 @@ export default {
     return {
       user: null,
       rooms: [],
-      loading:null,
+      loading: null
     }
   },
   methods: {
@@ -39,10 +40,25 @@ export default {
         description: payload[1],
         createdAt: Firebase.firestore.FieldValue.serverTimestamp()
       })
-    
     },
     deleteRoom(payload) {
       db.collection('users').doc(this.user.uid).collection('rooms').doc(payload).delete()
+    },
+    checkIn(payload) {
+      const roomRef = db
+        .collection('users')
+        .doc(payload.hostID)
+        .collection('rooms')
+        .doc(payload.roomID)
+
+      roomRef.get().then(doc => {
+        if (doc.exists) {
+          roomRef.collection('attendees').doc(this.user.uid).set({
+            displayName: payload.displayName,
+            createdAt: Firebase.firestore.FieldValue.serverTimestamp()
+          }).then(() => this.$router.push('/'))
+        }
+      })
     }
   },
 
