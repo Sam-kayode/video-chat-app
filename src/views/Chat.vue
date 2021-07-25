@@ -6,7 +6,7 @@
         Hosted by: <strong class="text-danger">{{ hostDisplayName }}</strong>
       </span>
     </div>
-    <div class="row">
+    <div class="row" v-if="user !==null && user.uid == hostID">
       <div class="col-md-8"></div>
       <div class="col-md-4">
         <button class="btn btn-primary mr-1">Join</button>
@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div v-else>
       <p class="lead">
         Hi <strong class="text-primary font-weight-bold"></strong>, you're currently in the room
         waiting for the owner of the chat to add you to the meeting. Please wait.
