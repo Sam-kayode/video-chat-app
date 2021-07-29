@@ -31,7 +31,7 @@
             :class = "[attendee.id == user.uid ? 'font-weight-bold text-danger':'']">{{ attendee.displayName }}</span>
           </li>
         </ul>
-        <div>
+        <div v-if="user && user.uid == $route.params.hostID" >
           <h5 class="mt-4">Pending</h5>
           <ul class="list-unstyled">
             <li class="mb-1" v-for="attendee in attendeesPending" :key="attendee.id">
@@ -53,7 +53,7 @@
                   <font-awesome-icon icon="trash"></font-awesome-icon>
                 </a>
               </span>
-              <span class="pl-1">{{ attendee.displayName }}</span>
+              <span class="pl-1"  :class = "[attendee.id == user.uid ? 'font-weight-bold text-danger':'']">{{ attendee.displayName }}</span>
             </li>
           </ul>
         </div>
