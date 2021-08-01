@@ -77,6 +77,7 @@ export default {
       attendeesApproved: [],
       attendeesPending: [],
       attendeeApproved: false,
+      attendeeJoined:false,
       hostID: this.$route.params.hostID,
       roomID: this.$route.params.roomID,
       roomName: null,
