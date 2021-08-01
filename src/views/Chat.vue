@@ -129,7 +129,12 @@ export default {
           .doc(attendeeID)
           .delete()
       }
-    }
+    },
+    doJoin(){
+      this.$refs.webrtc.join()
+      this.attendeeJoined= true
+    },
+
   },
   props: ['user'],
   mounted() {
