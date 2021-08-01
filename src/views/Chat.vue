@@ -1,22 +1,32 @@
 <template>
   <div class="container-fluid mt-4">
     <div class="mb-3">
-      <span class="mb-0 h2 text-primary" >{{ roomName }}</span>
-      <span class="ml-1" v-if="user && user.uid!==hostID">
+      <span class="mb-0 h2 text-primary">{{ roomName }}</span>
+      <span class="ml-1" v-if="user && user.uid !== hostID">
         Hosted by: <strong class="text-danger">{{ hostDisplayName }}</strong>
       </span>
     </div>
     <div class="row" v-if="(user !== null && user.uid == hostID) || attendeeApproved">
       <div class="col-md-8">
-        <vue-webrtc ref="webrtc"
-        width="100%"
-        :roomId="roomID"
-        v-on:joined-room="doAttendeeJoined"
-                v-on:left-room="doAttendeeLeft" />
-        </div> 
+        <vue-webrtc
+          ref="webrtc"
+          width="100%"
+          :roomId="roomID"
+          v-on:joined-room="doAttendeeJoined"
+          v-on:left-room="doAttendeeLeft"
+        />
+      </div>
       <div class="col-md-4">
-        <button v-if="!attendeeJoined && attendeeApproved" class="btn btn-primary mr-1" @click="doJoin">Join</button>
-        <button v-if="attendeeJoined" type="button" class="btn btn-danger mr-1" @click="doLeave">Leave</button>
+        <button
+          v-if="!attendeeJoined && attendeeApproved"
+          class="btn btn-primary mr-1"
+          @click="doJoin"
+        >
+          Join
+        </button>
+        <button v-if="attendeeJoined" type="button" class="btn btn-danger mr-1" @click="doLeave">
+          Leave
+        </button>
         <h4 class="mt-2">Attendees</h4>
         <ul class="list-unstyled">
           <li v-for="attendee in attendeesApproved" :key="attendee.id">
@@ -25,19 +35,26 @@
               class="mr-2"
               title="Approve attendee"
               @click="toggleApproval(attendee.id)"
-              v-if="user && user.uid==hostID"
+              v-if="user && user.uid == hostID"
             >
               <font-awesome-icon icon="user"></font-awesome-icon>
             </a>
-            <span class="mr-2" :class="[attendee.webRTCID ? 'text-success':'text-secondary']" title="On Air">
+            <span
+              class="mr-2"
+              :class="[attendee.webRTCID ? 'text-success' : 'text-secondary']"
+              title="On Air"
+            >
               <font-awesome-icon icon="podcast"></font-awesome-icon>
             </span>
             <span></span>
-            <span class="pl-1"
-            :class = "[attendee.id == user.uid ? 'font-weight-bold text-danger':'']">{{ attendee.displayName }}</span>
+            <span
+              class="pl-1"
+              :class="[attendee.id == user.uid ? 'font-weight-bold text-danger' : '']"
+              >{{ attendee.displayName }}</span
+            >
           </li>
         </ul>
-        <div v-if="user && user.uid == $route.params.hostID" >
+        <div v-if="user && user.uid == $route.params.hostID">
           <h5 class="mt-4">Pending</h5>
           <ul class="list-unstyled">
             <li class="mb-1" v-for="attendee in attendeesPending" :key="attendee.id">
@@ -59,7 +76,11 @@
                   <font-awesome-icon icon="trash"></font-awesome-icon>
                 </a>
               </span>
-              <span class="pl-1"  :class = "[attendee.id == user.uid ? 'font-weight-bold text-danger':'']">{{ attendee.displayName }}</span>
+              <span
+                class="pl-1"
+                :class="[attendee.id == user.uid ? 'font-weight-bold text-danger' : '']"
+                >{{ attendee.displayName }}</span
+              >
             </li>
           </ul>
         </div>
@@ -67,8 +88,9 @@
     </div>
     <div v-else>
       <p class="lead">
-        Hi <strong class="text-primary font-weight-bold">{{user.displayName}}</strong>, you're currently in the room
-        waiting for the owner of the chat to add you to the meeting. Please wait.
+        Hi <strong class="text-primary font-weight-bold">{{ user.displayName }}</strong
+        >, you're currently in the room waiting for the owner of the chat to add you to the meeting.
+        Please wait.
       </p>
     </div>
   </div>
@@ -83,7 +105,7 @@ export default {
       attendeesApproved: [],
       attendeesPending: [],
       attendeeApproved: false,
-      attendeeJoined:false,
+      attendeeJoined: false,
       hostID: this.$route.params.hostID,
       roomID: this.$route.params.roomID,
       roomName: null,
@@ -104,19 +126,18 @@ export default {
           .collection('attendees')
           .doc(attendeeID)
 
-          ref.get().then(attendeeDocument =>{
-            const approved = attendeeDocument.data().approved
-            if(approved){
-              ref.update({
-                approved:!approved
-              })
-            }else{
-              ref.update({
-                approved:true
-              })
-            }
-
-          })
+        ref.get().then(attendeeDocument => {
+          const approved = attendeeDocument.data().approved
+          if (approved) {
+            ref.update({
+              approved: !approved
+            })
+          } else {
+            ref.update({
+              approved: true
+            })
+          }
+        })
       }
     },
     deleteAttendee(attendeeID) {
@@ -130,14 +151,38 @@ export default {
           .delete()
       }
     },
-    doJoin(){
+    doJoin() {
       this.$refs.webrtc.join()
-      this.attendeeJoined= true
+      this.attendeeJoined = true
     },
-doLeave(){
-     this.$refs.webrtc.leave()
-      this.attendeeJoined= false
-}
+    doLeave() {
+      this.$refs.webrtc.leave()
+      this.attendeeJoined = false
+    },
+    doAttendeeJoined(joinID) {
+      const ref = db
+        .collection('users')
+        .doc(this.hostID)
+        .collection('rooms')
+        .doc(this.roomID)
+        .collection('attendees')
+        .doc(this.user.uid)
+      ref.update({
+        webRTCID: joinID
+      })
+    },
+    doAttendeeLeft(leaveID) {
+      const ref = db
+        .collection('users')
+        .doc(this.hostID)
+        .collection('rooms')
+        .doc(this.roomID)
+        .collection('attendees')
+        .doc(this.user.uid)
+      ref.update({
+        webRTCID: null
+      })
+    }
   },
   props: ['user'],
   mounted() {
@@ -165,11 +210,12 @@ doLeave(){
         if (attendeeDocument.data().approved) {
           if (this.user.uid == attendeeDocument.id) {
             this.attendeeApproved = true
-          }
+          } 
           tempApproved.push({
             id: attendeeDocument.id,
             displayName: attendeeDocument.data().displayName,
-            approved: attendeeDocument.data().approved
+            approved: attendeeDocument.data().approved,
+            webRTCID:attendeeDocument.data().webRTCID
           })
         } else {
           if (this.user.uid == attendeeDocument.id) {
@@ -179,7 +225,8 @@ doLeave(){
           tempPending.push({
             id: attendeeDocument.id,
             displayName: attendeeDocument.data().displayName,
-            approved: attendeeDocument.data().approved
+            approved: attendeeDocument.data().approved,
+            webRTCID:attendeeDocument.data().webRTCID
           })
         }
       })
@@ -209,4 +256,3 @@ doLeave(){
   height: auto;
 }
 </style>
-
