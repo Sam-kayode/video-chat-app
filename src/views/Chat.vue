@@ -29,7 +29,7 @@
             >
               <font-awesome-icon icon="user"></font-awesome-icon>
             </a>
-            <span class="mr-2" title="On Air">
+            <span class="mr-2" :class="[attendee.webRTCID ? 'text-success':'text-secondary']" title="On Air">
               <font-awesome-icon icon="podcast"></font-awesome-icon>
             </span>
             <span></span>
