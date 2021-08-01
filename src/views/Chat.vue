@@ -134,7 +134,10 @@ export default {
       this.$refs.webrtc.join()
       this.attendeeJoined= true
     },
-
+doLeave(){
+     this.$refs.webrtc.leave()
+      this.attendeeJoined= false
+}
   },
   props: ['user'],
   mounted() {
