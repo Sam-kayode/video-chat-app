@@ -61,7 +61,7 @@
     </div>
     <div v-else>
       <p class="lead">
-        Hi <strong class="text-primary font-weight-bold"></strong>, you're currently in the room
+        Hi <strong class="text-primary font-weight-bold">{{user.displayName}}</strong>, you're currently in the room
         waiting for the owner of the chat to add you to the meeting. Please wait.
       </p>
     </div>
@@ -178,4 +178,20 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.video-list {
+  margin-bottom: 10px;
+  background: transparent !important;
+}
+.video-item {
+  width: 50%;
+  display: inline-block;
+  background: transparent !important;
+}
+
+.video-item video {
+  width: 100%;
+  height: auto;
+}
+</style>
+
