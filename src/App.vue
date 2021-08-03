@@ -31,7 +31,7 @@ export default {
         .signOut()
         .then(() => {
           this.user = null
-          this.$router.push('login')
+          this.$router.push('/login')
         })
     },
     addRoom(payload) {
@@ -56,7 +56,7 @@ export default {
           roomRef.collection('attendees').doc(this.user.uid).set({
             displayName: payload.displayName,
             createdAt: Firebase.firestore.FieldValue.serverTimestamp()
-          }).then(() => this.$router.push('/chat/${payload.hostID}/${payload.roomID}'))
+          }).then(() => this.$router.push(`/chat/${payload.hostID}/${payload.roomID}`))
         }
       })
     }
@@ -101,5 +101,6 @@ $primary: #262f80;
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 #app {
+  
 }
 </style>

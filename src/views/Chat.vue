@@ -210,12 +210,12 @@ export default {
         if (attendeeDocument.data().approved) {
           if (this.user.uid == attendeeDocument.id) {
             this.attendeeApproved = true
-          } 
+          }
           tempApproved.push({
             id: attendeeDocument.id,
             displayName: attendeeDocument.data().displayName,
             approved: attendeeDocument.data().approved,
-            webRTCID:attendeeDocument.data().webRTCID
+            webRTCID: attendeeDocument.data().webRTCID
           })
         } else {
           if (this.user.uid == attendeeDocument.id) {
@@ -226,14 +226,14 @@ export default {
             id: attendeeDocument.id,
             displayName: attendeeDocument.data().displayName,
             approved: attendeeDocument.data().approved,
-            webRTCID:attendeeDocument.data().webRTCID
+            webRTCID: attendeeDocument.data().webRTCID
           })
         }
       })
       this.attendeesApproved = tempApproved
       this.attendeesPending = tempPending
       if (!amCheckedIn) {
-        this.$router.push('/checkin/$(this.hostID}/${this.roomID}')
+        this.$router.push('/checkin/${this.hostID}/${this.roomID}')
       }
     })
   }

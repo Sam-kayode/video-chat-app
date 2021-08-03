@@ -81,7 +81,7 @@ export default {
           
           
         } else {
-          this.$router.replace('/')
+          this.$router.replace('/roooms')
         }
       })
   }
