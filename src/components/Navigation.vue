@@ -5,7 +5,7 @@
         <div class="topnav-links">
           <span class="px-2 signout" @click="$emit('signout')" v-if="user">Sign out</span>
           <router-link class="px-2" to="/rooms" v-if="user">Rooms</router-link>
-          <router-link class="px-2" to="/register">Register</router-link>
+          <router-link class="px-2" to="/register" v-if="!user">Register</router-link>
           <router-link class="px-2" to="/login" v-if="!user">log in</router-link>
         </div>
         <button
@@ -46,8 +46,8 @@
           <li class="px-1 py-3" @click="toggle">
             <router-link to="/rooms" v-if="user" @click="toggle">Rooms</router-link>
           </li>
-          <li class="px-1 py-3" @click="toggle">
-            <router-link to="/register">Register</router-link>
+          <li class="px-1 py-3" @click="toggle" aria-current="">
+            <router-link to="/register" v-if="!user">Register</router-link>
           </li>
           <li class="px-1 py-3" @click="toggle">
             <router-link to="/register">About</router-link>
