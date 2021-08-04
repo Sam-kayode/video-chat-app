@@ -2,7 +2,7 @@
   <div id="app">
     <Navigation :user="user" @signout="signout" class="" />
     <router-view
-      class="mt-5 pt-4"
+      class="mt-5 pt-4 px-0"
       :user="user"
       :rooms="rooms"
       @signout="signout"
@@ -101,6 +101,6 @@ $primary: #262f80;
 @import 'node_modules/bootstrap/scss/bootstrap';
 
 #app {
-  
+
 }
 </style>

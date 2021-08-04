@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid px-5">
     <h2 class="text-center mb-3">Rooms</h2>
 
     <div class="row">
@@ -36,11 +36,11 @@
           </button>
         </form>
       </div>
-      <div class="col-sm col-md-7 pt-5 pt-md-0">
-        <h4 class="">Recent</h4>
-        <div class="row">
-          <div class="card mx-auto mb-5" v-for="room in rooms" :key="room.name">
-            <h5 class="card-header">{{ room.name }}</h5>
+      <div class="col-sm col-md-7 pt-5 pt-md-0 px-0">
+        <h4 class="ml-3">Recent</h4>
+        <div class="contain">
+          <div class="card" v-for="room in rooms" :key="room.name">
+            <h5 class="card-header font-weight-bold">{{ room.name }}</h5>
             <div class="card-body">
               <h5 class="card-title">Description</h5>
               <p class="card-text">
@@ -61,14 +61,14 @@
               >
                 <font-awesome-icon icon="user"></font-awesome-icon>
               </router-link>
-               <router-link
+              <router-link
                 class="btn btn-sm px-2 ml-2 btn-outline-primary"
                 title="Chat"
                 :to="`/chat/${user.uid}/${room.id}`"
               >
                 <font-awesome-icon icon="video"></font-awesome-icon>
               </router-link>
-          </div>
+            </div>
           </div>
         </div>
       </div>
@@ -98,11 +98,22 @@ export default {
       this.$refs.roomName.focus()
     }
   },
-  props: ['rooms', 'loading','user']
+  props: ['rooms', 'loading', 'user']
 }
 </script>
 <style>
-.card {
-  min-width: 300px;
+.contain {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+@media (max-width: 576px) {
+  .contain {
+    padding: 20px;
+    grid-gap: 10px;
+  }
 }
 </style>
