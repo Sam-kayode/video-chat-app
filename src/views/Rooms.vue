@@ -70,7 +70,7 @@
               </router-link>
               <span
                class="clipboard btn btn-sm btn-outline-primary " 
-                v-clipboard:copy="`/checkin/${user.uid}/${room.id}`"
+                v-clipboard:copy="`https://vee-chat.netlify.app/#/checkin/${user.uid}/${room.id}`"
                 v-clipboard:success="onCopy"
                 v-clipboard:error="onError"
               >
@@ -85,6 +85,7 @@
 </template>
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Firebase from 'firebase'
 export default {
   name: 'Rooms',
   data() {
@@ -113,6 +114,14 @@ export default {
       console.log(e)
     }
   },
+    mounted() {
+    //this is to obtain the users dsplay name
+    Firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.$router.replace('/')
+      }
+    })
+    },
   props: ['rooms', 'loading', 'user']
 }
 </script>

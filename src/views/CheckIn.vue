@@ -66,6 +66,9 @@ export default {
       if (user) {
         this.displayName = user.displayName
       }
+      else{
+                this.$router.replace('/')
+      }
     })
 
     //to get the room name
