@@ -68,6 +68,14 @@
               >
                 <font-awesome-icon icon="video"></font-awesome-icon>
               </router-link>
+              <span
+               class="clipboard btn btn-sm btn-outline-primary " 
+                v-clipboard:copy="`/checkin/${user.uid}/${room.id}`"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                <font-awesome-icon icon="clipboard" class="p-0"></font-awesome-icon>
+              </span>
             </div>
           </div>
         </div>
@@ -96,6 +104,13 @@ export default {
       this.roomName = null
       this.roomDescription = null
       this.$refs.roomName.focus()
+    },
+    onCopy: function (e) {
+      alert('Room link has been copied successfuly')
+    },
+    onError: function (e) {
+      alert('Failed to copy the text to the clipboard')
+      console.log(e)
     }
   },
   props: ['rooms', 'loading', 'user']
@@ -110,6 +125,12 @@ export default {
   grid-gap: 10px;
 }
 
+.clipboard{
+ color:#262f80; 
+ position: absolute;
+ right:5px;
+ top:5px;
+}
 @media (max-width: 576px) {
   .contain {
     padding: 20px;
