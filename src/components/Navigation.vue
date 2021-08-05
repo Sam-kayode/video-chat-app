@@ -46,8 +46,8 @@
           <li class="px-1 py-3" @click="toggle">
             <router-link to="/rooms" v-if="user" @click="toggle">Rooms</router-link>
           </li>
-          <li class="px-1 py-3" @click="toggle" aria-current="">
-            <router-link to="/register" v-if="!user">Register</router-link>
+          <li class="px-1 py-3" @click="toggle" aria-current="" v-if="!user">
+            <router-link to="/register" >Register</router-link>
           </li>
           <li class="px-1 py-3" @click="toggle">
             <router-link to="/register">About</router-link>
