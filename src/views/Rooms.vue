@@ -138,7 +138,7 @@ export default {
  color:#262f80; 
  position: absolute;
  right:5px;
- top:5px;
+bottom:5px;
 }
 @media (max-width: 576px) {
   .contain {
